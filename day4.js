@@ -1027,3 +1027,25 @@ const INPUT = {b:"iyr:2015\n" +
         "\n" +
         "ecl:blu byr:2002 eyr:2028 pid:998185490 cid:165 iyr:2020\n" +
         "hgt:188cm hcl:#c0946f"}.b
+
+function main(){
+    let ctr = 0;
+    const passports = INPUT.split("\n\n").map(line => line.split(/\n|\s/).map(function (e){[key, value] = e.split(':');let a = {};a[key] = value;return a;}));
+    for (const p of passports){
+        if (Object.values(p).length>=8) {
+            ctr++;
+            //console.log(p)
+        }
+        else {
+            //console.log(p)
+        }
+
+    }
+
+    return ctr
+}
+
+module.exports = main;
+if (require.main === module) {
+    console.log(main())
+}
