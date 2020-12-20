@@ -1030,18 +1030,35 @@ const INPUT = {b:"iyr:2015\n" +
 
 function main(){
     let ctr = 0;
-    const passports = INPUT.split("\n\n").map(line => line.split(/\n|\s/).map(function (e){[key, value] = e.split(':');let a = {};a[key] = value;return a;}));
+    const passports = INPUT.split("\n\n")
+        .map(line => line.split(/\n|\s/)
+            .map(function (e){[key, value] = e.split(':');let a = {};a[key] = value;return a;}))
+        .map(function (t){
+        let a = {};
+        for (const i of t){
+            Object.assign(a, i)
+        }
+        return a
+    });
     for (const p of passports){
-        if (Object.values(p).length>=8) {
+
+        if ((p.pid && p.pid.match(/^\d{9}$/)) &&
+            (p.hcl && p.hcl.match(/^#(\d|[a-f]){6}$/))  &&
+            (p.ecl && p.ecl.match(/^amb|blu|brn|gry|grn|hzl|oth$/)) &&
+            (p.eyr && p.eyr.match(/^20(30|2\d)$/)) &&
+            (p.iyr && p.iyr.match(/^20(20|1\d)$/)) &&
+            (p.byr && p.byr<=2002 && p.byr>=1920) &&
+            (p.hgt && p.hgt.match(/^((1([5-8]\d|9[0-3])cm)|((59|6\d|7[0-6])in))$/))) {
             ctr++;
             //console.log(p)
+
         }
         else {
             //console.log(p)
+
         }
 
     }
-
     return ctr
 }
 
