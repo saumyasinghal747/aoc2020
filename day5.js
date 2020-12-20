@@ -809,13 +809,23 @@ const INPUT = {b:"BFBFBBBRLL\n" +
         "FBFFFFBRRL"}.b
 
 function main(){
-    const lines = INPUT.split("\n").map(function (line){
+    const seats = INPUT.split("\n").map(function (line){
         let [a,b] = line.split(/(?<=[FB])(?=[RL])/)
         return {row:parseInt(a.replaceAll('F', 0).replaceAll('B',1), 2),
         col:parseInt(b.replaceAll('L',0).replaceAll('R',1),2)
         }
     });
-    console.log(lines);
+    const seatIds = seats.map(function({col, row}){
+       return row*8 + col
+    })
+    const max = Math.max(...seatIds), min=Math.min(...seatIds);
+    // 13 to 822
+    for (let i = min; i <= max; i++) {
+        if (!seatIds.includes(i)){
+            return i
+        }
+    }
+
 }
 
 module.exports = main;
