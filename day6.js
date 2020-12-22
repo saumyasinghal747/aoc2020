@@ -2236,7 +2236,7 @@ const INPUT = {b:"qpicundo\n" +
         "fcelpwgamhnquzbsrtdxivjk\n" +
         "tdjwzsaqhxunkfcvpbrmgil"}.b
 
-function intersection(arrA,arrB){return arrA.filter(x => arrB.includes(x))}
+function intersection(arrA,arrB){return arrA.filter(arrB.includes)}
 function intersectionMultiple(arrs){
     return arrs.reduce(intersection)
 }
