@@ -1,6 +1,6 @@
 //const INPUT = require('./day9.json').SAMPLE
 const {INPUT} = require('./day9.json')
-const N = 5;
+const N = 25;
 function main() {
     const nums = INPUT.split('\n').map(a=>+a);
     for (let i = N; i < nums.length; i++) {
