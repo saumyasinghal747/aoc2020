@@ -43,7 +43,8 @@ function main(){
 }
 
 
-
-
-console.dir(main())
+module.exports = main;
+if (require.main === module) {
+    console.log(main())
+}
 //main()
